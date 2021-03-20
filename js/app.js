@@ -30,7 +30,7 @@ http.createServer(function (request, response) {
     //     }
     // } else 
     if (request.method == "GET") {
-        let sql = "SELECT * FROM questions q join options o on q.id = o.question_id";
+        let sql = "SELECT * FROM questions q join answers a on q.id = a.question_id";
         con.query(sql, function (err, result) {
             const resultStr = JSON.stringify(result);
             console.log(result);
