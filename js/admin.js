@@ -4,7 +4,7 @@ import { updateLocalStorage } from './doc.js';
 
 
 const xhttp = new XMLHttpRequest();
-xhttp.open("GET", "https://aamayzingg.com/COMP4537/labs/quiz/questions", true);
+xhttp.open("GET", "https://aamayzingg.com/COMP4537/labs/quiz/", true);
 xhttp.send();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4) {
