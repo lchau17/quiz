@@ -14,7 +14,7 @@ con.connect(err => {
 const URL = require('url').URL;
 let http = require('http');
 http.createServer(function (request, response) {
-    const reqUrl = new URL(request.url, 'https://aamayzingg.com/COMP4537/labs/quiz/');
+    const reqUrl = new URL(request.url, 'https://aamayzingg.com/COMP4537/labs/quiz/questions');
     // if (request.method == "POST"){
     //     const name = reqUrl.searchParams.get('name');
     //     const score = reqUrl.searchParams.get('score');
