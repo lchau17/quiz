@@ -14,6 +14,16 @@ con.connect(err => {
 const URL = require('url').URL;
 let http = require('http');
 http.createServer(function (request, response) {
+    let data = '';
+
+    request.on('data', chunk => {
+        data += chunk;
+    })
+    request.on('end', () => {
+        console.log(JSON.parse(data)); // 'Buy the milk'
+    })
+
+
     const reqUrl = new URL(request.url, 'https://aamayzingg.com/COMP4537/labs/quiz/questions');
     if (request.method == "POST") {
         console.log("POST");
