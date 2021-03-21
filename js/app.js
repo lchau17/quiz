@@ -28,8 +28,8 @@ http.createServer(function (request, response) {
             console.log("POST");
             data = JSON.parse(data);
             console.log(data);
-            const id = reqUrl.searchParams.get('id');
-            const question = reqUrl.searchParams.get('question');
+            const id = data['id'];
+            const question = data['question'];
             let sql = `INSERT INTO questions(question) values (${question})`;
             try {
                 con.query(sql, function (err, result) {
@@ -37,7 +37,7 @@ http.createServer(function (request, response) {
                     {
                         throw err;
                     } else {
-                        const options = reqUrl.searchParams.get('options');
+                        const options = data['options'];
                         for (let i = 0; i < options.length; i++) {
                             let sql = `INSERT INTO answers(question_id, option_id, answer, is_answer) values ('${id}', ${options[i]['option_id']}, ${options[i]['answer']}, ${options[i]['is_answer']})`;
                             con.query(sql, function (err, result) {
