@@ -32,7 +32,7 @@ http.createServer(function (request, response) {
     if (request.method == "GET") {
         let questions = []
         let questionSql = "SELECT * FROM questions q";
-        con.query(questionSql, function (err, rows, result) {
+        con.query(questionSql, function (err, rows) {
             if (!err){
                 if (rows.length) {
                     for (let i = 0; i < rows.length; i++) {
@@ -46,21 +46,24 @@ http.createServer(function (request, response) {
                                     question['options'] = result;
                                     questions.push(question);
                                     console.log(questions);
+                                    if (i == rows.length - 1) {
+                                        const resultStr = JSON.stringify(questions);
+                                        if (err) throw err;
+                                        response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
+                                        response.write(resultStr);
+                                        response.end();
+                                    }
                                 }
                             } else {
                                 throw err;
                             }
                         })
                     }
-                    const resultStr = JSON.stringify(questions);
-                    if (err) throw err;
-                    response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
-                    response.write(resultStr);
-                    response.end();
-
+                    
                 }
             }
         });
     }}   
 ).listen(8070);
 console.log('listening...');
+ 
