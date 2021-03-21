@@ -2,47 +2,43 @@ import { Question, numOfOptions } from './question.js';
 import { createContentDiv, createQuestionDiv, createButton } from './doc.js';
 import { updateLocalStorage } from './doc.js';
 
-
-
- 
+let numOfQuestions;
 
 function createQuizQuestion(data) {
-    for (let i = 0; i < data.length; i ++) {
-        let questionDiv = createQuestionDiv(data[i]['id']);
-        let questionTextArea = document.createElement("textarea");
-        questionTextArea.id = `q${data[i]['id']}-question`;
-        questionTextArea.classList.add("question-textarea");
-        questionTextArea.innerHTML = data[i]['question'];
-        questionDiv.appendChild(questionTextArea);
+    let questionDiv = createQuestionDiv(data['id']);
+    let questionTextArea = document.createElement("textarea");
+    questionTextArea.id = `q${dat['ida']}-question`;
+    questionTextArea.classList.add("question-textarea");
+    questionTextArea.innerHTML = data[i]['question'];
+    questionDiv.appendChild(questionTextArea);
+
+    let br = document.createElement("br");
+    questionDiv.appendChild(br);
+
+    for (let j = 0; j < numOfOptions; j++){
+        let radiobox = document.createElement("input");
+        radiobox.type = "radio";
+        radiobox.id = `q${data['id']}-choice${i+1}`;
+        radiobox.name =  `q${data['id']}`;
+        radiobox.checked = Boolean(data['options'][j]['is_answer']);
+
+        let label = document.createElement('label');
+        label.htmlFor = radiobox.id;
+        
+        let choiceText = document.createElement("textarea");
+        choiceText.id = `${radiobox.id}Text`;
+        choiceText.classList.add("choice-textarea");
+        choiceText.setAttribute("type", "text");
+        choiceText.innerHTML = data['options'][j]['answer']
+
+        label.appendChild(choiceText);
 
         let br = document.createElement("br");
+        
         questionDiv.appendChild(br);
-
-        for (let j = 0; j < numOfOptions; j++){
-            let radiobox = document.createElement("input");
-            radiobox.type = "radio";
-            radiobox.id = `q${data[i]['id']}-choice${i+1}`;
-            radiobox.name =  `q${data[i]['id']}`;
-            radiobox.checked = Boolean(data[i]['options'][j]['is_answer']);
-    
-            let label = document.createElement('label');
-            label.htmlFor = radiobox.id;
-            
-            let choiceText = document.createElement("textarea");
-            choiceText.id = `${radiobox.id}Text`;
-            choiceText.classList.add("choice-textarea");
-            choiceText.setAttribute("type", "text");
-            choiceText.innerHTML = data[i]['options'][j]['answer']
-
-            label.appendChild(choiceText);
-    
-            let br = document.createElement("br");
-            
-            questionDiv.appendChild(br);
-            questionDiv.appendChild(radiobox);
-            questionDiv.appendChild(label);
-            questionDiv.appendChild(br);
-        }
+        questionDiv.appendChild(radiobox);
+        questionDiv.appendChild(label);
+        questionDiv.appendChild(br);
     }
 }
 
@@ -96,17 +92,12 @@ function getFilledQuestions(){
 
 
 function onAddClick(){
-
-    let filledQuestions = getFilledQuestions();
-    if (filledQuestions.length !== 0) {
-        updateLocalStorage('questions', JSON.stringify(filledQuestions));
-        createQuizQuestion(filledQuestions.length + 1);
+    data = {
+        'id': ++numOfQuestions,
+        'question': '',
+        'options': ['', '', '', '']
     }
-
-    let content = document.getElementById("content")
-    if (content.children.length === 0){
-        createQuizQuestion(1);
-    }
+    createQuizQuestion(data);
 }
 
 function onDeleteClick(){
@@ -136,7 +127,11 @@ xhttp.onreadystatechange = function() {
     if (this.readyState == 4) {
         console.log(this.responseText);
         const data = JSON.parse(this.responseText);
+        numOfQuestions = data.length;
+        for (let i = 0; i < data.length; i ++) {
+            createQuizQuestion(data[i]);
+
+
         createContentDiv();
-        createQuizQuestion(data);
         createMenu();
     }};
