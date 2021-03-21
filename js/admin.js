@@ -12,39 +12,44 @@ xhttp.onreadystatechange = function() {
         const data = JSON.parse(this.responseText);
     }};
 
-function createQuizQuestion(questionNumber) {
-    let questionDiv = createQuestionDiv(questionNumber);
+ 
 
-    let questionTextArea = document.createElement("textarea");
-    questionTextArea.id = `q${questionNumber}-question`;
-    questionTextArea.classList.add("question-textarea");
-    questionDiv.appendChild(questionTextArea);
-
-    let br = document.createElement("br");
-    questionDiv.appendChild(br);
-
-    for (let i = 0; i < numOfOptions; i++){
-        let radiobox = document.createElement("input");
-        radiobox.type = "radio";
-        radiobox.id = `q${questionNumber}-choice${i+1}`;
-        radiobox.name =  `q${questionNumber}`;
-
-        let label = document.createElement('label');
-        label.htmlFor = radiobox.id;
-        
-        let choiceText = document.createElement("textarea");
-        choiceText.id = `${radiobox.id}Text`;
-        choiceText.classList.add("choice-textarea");
-        choiceText.setAttribute("type", "text");
-        
-        label.appendChild(choiceText);
+function createQuizQuestion(data) {
+    for (let i = 0; i < data.length; i ++) {
+        let questionDiv = createQuestionDiv(data[i]['id']);
+        let questionTextArea = document.createElement("textarea");
+        questionTextArea.id = `q${question[id]}-question`;
+        questionTextArea.classList.add("question-textarea");
+        questionTextArea.innerHTML = data[i]['question'];
+        questionDiv.appendChild(questionTextArea);
 
         let br = document.createElement("br");
-        
         questionDiv.appendChild(br);
-        questionDiv.appendChild(radiobox);
-        questionDiv.appendChild(label);
-        questionDiv.appendChild(br);
+
+        for (let j = 0; i < numOfOptions; j++){
+            let radiobox = document.createElement("input");
+            radiobox.type = "radio";
+            radiobox.id = `q${questionNumber}-choice${i+1}`;
+            radiobox.name =  `q${questionNumber}`;
+    
+            let label = document.createElement('label');
+            label.htmlFor = radiobox.id;
+            
+            let choiceText = document.createElement("textarea");
+            choiceText.id = `${radiobox.id}Text`;
+            choiceText.classList.add("choice-textarea");
+            choiceText.setAttribute("type", "text");
+            choiceText.innerHTML = data[i]['options'][j]['answer']
+
+            label.appendChild(choiceText);
+    
+            let br = document.createElement("br");
+            
+            questionDiv.appendChild(br);
+            questionDiv.appendChild(radiobox);
+            questionDiv.appendChild(label);
+            questionDiv.appendChild(br);
+        }
     }
 }
 
