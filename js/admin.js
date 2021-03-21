@@ -18,7 +18,7 @@ function createQuizQuestion(data) {
     for (let j = 0; j < numOfOptions; j++){
         let radiobox = document.createElement("input");
         radiobox.type = "radio";
-        radiobox.id = `q${data['id']}-choice${i+1}`;
+        radiobox.id = `q${data['id']}-choice${j+1}`;
         radiobox.name =  `q${data['id']}`;
         radiobox.checked = Boolean(data['options'][j]['is_answer']);
 
