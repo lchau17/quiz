@@ -18,7 +18,7 @@ function createQuizQuestion(data) {
         let br = document.createElement("br");
         questionDiv.appendChild(br);
 
-        for (let j = 0; i < numOfOptions; j++){
+        for (let j = 0; j < numOfOptions; j++){
             let radiobox = document.createElement("input");
             radiobox.type = "radio";
             radiobox.id = `q${data[i]['id']}-choice${i+1}`;
