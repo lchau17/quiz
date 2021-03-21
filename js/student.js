@@ -80,7 +80,7 @@ xhttp.onreadystatechange = function() {
     if (this.readyState == 4) {
         console.log(this.responseText);
         const data = JSON.parse(this.responseText);
-        numOfQuestions = data.length;
+        let numOfQuestions = data.length;
         if (numOfQuestions === 0){
             document.body.innerHTML = "No quiz question found"
             return;
