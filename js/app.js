@@ -32,25 +32,32 @@ http.createServer(function (request, response) {
     if (request.method == "GET") {
         let questions = []
         let questionSql = "SELECT * FROM questions q";
-        con.query(questionSql, function (err, result) {
-            console.log(result);
-
-            for (let i = 0; i < result.length; i++) {
-                let question = {}
-                question[id] = result[i].id
-                question[question] = result.question
-                let answerSql = `SELECT * FROM answers a join questions q on a.question_id = q.id where q.id = ${result[i].id}`;
-                con.query(answerSql, question, function (err, result) {
-                    question[options] = result;
+        con.query(questionSql, function (err, rows, result) {
+            if (!err){
+                console.log(result);
+                if (rows.length) {
+                    for (let i = 0; i < result.length; i++) {
+                        let question = {}
+                        question[id] = result[i].id
+                        question[question] = result[i].question
+                        let answerSql = `SELECT * FROM answers a join questions q on a.question_id = q.id where q.id = ${result[i].id}`;
+                        con.query(answerSql, question, function (err, result) {
+                            if (!err){
+                                question[options] = result;
+                            } else {
+                                throw err;
+                            }
+                        })
+                        questions.push(question);
+                    }
+                    const resultStr = JSON.stringify(questions);
                     if (err) throw err;
-                })
-                questions.push(question);
+                    response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
+                    response.write(resultStr);
+                    response.end();
+
+                }
             }
-            const resultStr = JSON.stringify(result);
-            if (err) throw err;
-            response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
-            response.write(resultStr);
-            response.end();
         });
     }}   
 ).listen(8070);
