@@ -1,6 +1,4 @@
-import { Question } from './question.js';
 import { createContentDiv, createButton } from './doc.js';
-import { getLocalStorage } from './doc.js';
 
 
 const numOfOptions = 4;
