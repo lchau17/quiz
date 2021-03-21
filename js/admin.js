@@ -50,7 +50,7 @@ function createMenu(){
 
     let addBtn = createButton('Add', onAddClick);
     let saveBtn = createButton('Save Changes', onSaveClick);
-    let deleteBtn = createButton('Delete', onDeleteClick);
+    // let deleteBtn = createButton('Delete', onDeleteClick);
     let backBtn = createButton('Back', function() {
         window.history.back()
     });
