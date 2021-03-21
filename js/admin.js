@@ -128,11 +128,9 @@ xhttp.onreadystatechange = function() {
         console.log(this.responseText);
         const data = JSON.parse(this.responseText);
         numOfQuestions = data.length;
+        createContentDiv();
         for (let i = 0; i < data.length; i ++) {
             createQuizQuestion(data[i]);
         }   
-
-
-        createContentDiv();
         createMenu();
     }};
