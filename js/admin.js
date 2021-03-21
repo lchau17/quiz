@@ -61,30 +61,36 @@ function createMenu(){
 }
 
 function getFilledQuestions(){
-    let questions = document.getElementsByClassName("question-div");
+    let questionsDivs = document.getElementsByClassName("question-div");
     let questionsList = [];
 
-    for (let i = 0; i < questions.length; i++ ){
-        let question = questions[i];
-        let filledQuestionNumber = i + 1;
-        let answer;
-        let questionText = document.getElementById(`q${filledQuestionNumber}-question`).value;
+    for (let i = 1; i <= questionsDivs.length; i++ ){
+        let question = {}
+        question['id'] = questionsDivs[i-1].id
+        let questionText = document.getElementById(`q${i}-question`).value;
+        question['question'] = questionText
         if (questionText === ""){
             alert(`Empty quiz questions: Question ${filledQuestionNumber}`);
             return [];
         }
 
-        let choicesNodes = Array.from(question.querySelectorAll("label textarea"));
-
-        let choices = choicesNodes.map(node => node.value);
         let selected = document.querySelector(`input[name="q${filledQuestionNumber}"]:checked`)
         if (selected === null){
             alert(`Please select answer: Question ${filledQuestionNumber}`);
             return [];
         }
-        let selectedId = selected.id
-        answer = document.querySelector(`label[for="${selectedId}"] textarea`).value;
-        questionsList.push(new Question(questionText, choices, answer));
+        let choicesNodes = Array.from(question.querySelectorAll("label textarea"));
+
+        let choices = choicesNodes.map(node => (
+            {
+                'question_id': questionsDivs[i-1].id,
+                'option_id': node.id.substr(-1),
+                "answer": node.value,
+                "is_answer": node.id.includes(selected.id)
+            }));
+        question['options'] = choices;
+        questionsList.push(question);
+        console.log(questionsList)
     }
 
     return questionsList;
