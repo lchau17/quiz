@@ -7,7 +7,7 @@ const numOfOptions = 4;
 function onSubmitClick(questionsList){
     let rightAnwser = 0;
 
-    for (let i = 0; i < questionsList; i++) {
+    for (let i = 0; i < questionsList.length; i++) {
         let selected = document.querySelector(`input[type='radio'][name='q${i+1}']:checked`)
         for(let j = 0; j < numOfOptions; j++) {
             if (questionsList[i]['options'][j]['is_answer'] === true) {
@@ -51,6 +51,7 @@ function createStudentQuestion(question) {
         radiobox.type = "radio";
         radiobox.id = `q${question['id']}-choice${i+1}`;
         radiobox.name =  `q${question['id']}`;
+        radiobox.value = options[i]['answer'];
 
         let label = document.createElement('label');
         label.htmlFor = radiobox.id;
