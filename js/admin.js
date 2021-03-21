@@ -84,7 +84,7 @@ function getFilledQuestions(){
         let choices = choicesNodes.map(node => (
             {
                 'question_id': questionsDivs[i-1].id,
-                'option_id': node.id.substr(-1),
+                'option_id': node.id.charAt(-5),
                 "answer": node.value,
                 "is_answer": node.id.includes(selected.id)
             }));
