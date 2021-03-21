@@ -9,6 +9,9 @@ function onSubmitClick(questionsList) {
 
     for (let i = 0; i < questionsList.length; i++) {
         let selected = document.querySelector(`input[name='q${i+1}']:checked`);
+        if (!selected) {
+            continue;
+        }
         for (let j = 0; j < numOfOptions; j++) {
             if (questionsList[i]['options'][j]['is_answer'] == 1) {
                 let answer = questionsList[i]['options'][j]['answer'];
