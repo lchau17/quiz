@@ -11,7 +11,7 @@ function onSubmitClick(questionsList){
         let selected = document.querySelector(`input[name='q${i+1}']:checked`);
         for (let j = 0; j < numOfOptions; j++) {
             console.log(questionsList[i]['options'][j]['is_answer']);
-            if (questionsList[i]['options'][j]['is_answer'] === true) {
+            if (questionsList[i]['options'][j]['is_answer'] == 1) {
                 let answer = questionsList[i]['options'][j]['answer'];
                 console.log(answer);
                 if (selected.value == answer) {
