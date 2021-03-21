@@ -79,7 +79,7 @@ function getFilledQuestions(){
             alert(`Please select answer: Question ${i}`);
             return [];
         }
-        let choicesNodes = Array.from(question.querySelectorAll("label textarea"));
+        let choicesNodes = Array.from(questionsDivs[i-1].querySelectorAll("label textarea"));
 
         let choices = choicesNodes.map(node => (
             {
