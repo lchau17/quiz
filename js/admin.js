@@ -74,9 +74,9 @@ function getFilledQuestions(){
             return [];
         }
 
-        let selected = document.querySelector(`input[name="q${filledQuestionNumber}"]:checked`)
+        let selected = document.querySelector(`input[name="q${i}"]:checked`)
         if (selected === null){
-            alert(`Please select answer: Question ${filledQuestionNumber}`);
+            alert(`Please select answer: Question ${i}`);
             return [];
         }
         let choicesNodes = Array.from(question.querySelectorAll("label textarea"));
