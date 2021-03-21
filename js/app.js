@@ -30,8 +30,20 @@ http.createServer(function (request, response) {
     //     }
     // } else 
     if (request.method == "GET") {
-        let sql = "SELECT * FROM questions q join answers a on q.id = a.question_id";
-        con.query(sql, function (err, result) {
+        let questions = []
+        let questionSql = "SELECT * FROM questions q";
+        con.query(questionSql, function (err, result) {
+            for (let i = 0; i < result.length; i++) {
+                let question = {}
+                question[id] = result[i][id]
+                question[question] = result[question]
+                let answerSql = `SELECT * FROM answers a join questions q on a.question_id = q.id where q.id = ${result[id]}`;
+                con.query(answerSql, question, function (err, result) {
+                    question[options] = result;
+                    if (err) throw err;
+                })
+                questions.push(question);
+            }
             const resultStr = JSON.stringify(result);
             console.log(result);
             if (err) throw err;
@@ -42,4 +54,3 @@ http.createServer(function (request, response) {
     }}   
 ).listen(8070);
 console.log('listening...');
-
