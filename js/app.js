@@ -30,7 +30,7 @@ http.createServer(function (request, response) {
             console.log(data);
             const id = data['id'];
             const question = data['question'];
-            let sql = `INSERT INTO questions(question) values (${question})`;
+            let sql = `INSERT INTO questions(question) values ('${question}')`;
             try {
                 con.query(sql, function (err, result) {
                     if (err) 
@@ -39,7 +39,7 @@ http.createServer(function (request, response) {
                     } else {
                         const options = data['options'];
                         for (let i = 0; i < options.length; i++) {
-                            let sql = `INSERT INTO answers(question_id, option_id, answer, is_answer) values ('${id}', ${options[i]['option_id']}, ${options[i]['answer']}, ${options[i]['is_answer']})`;
+                            let sql = `INSERT INTO answers(question_id, option_id, answer, is_answer) values (${id}, ${options[i]['option_id']}, '${options[i]['answer']}', ${options[i]['is_answer']})`;
                             con.query(sql, function (err, result) {
                                 if (err) {
                                     throw err;
