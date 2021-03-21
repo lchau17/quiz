@@ -36,11 +36,11 @@ http.createServer(function (request, response) {
             if (!err){
                 console.log(result);
                 if (rows.length) {
-                    for (let i = 0; i < result.length; i++) {
+                    for (let i = 0; i < rows.length; i++) {
                         let question = {}
-                        question['id'] = result[i].id
-                        question['question'] = result[i].question
-                        let answerSql = `SELECT * FROM answers a join questions q on a.question_id = q.id where q.id = ${result[i].id}`;
+                        question['id'] = rows[i].id
+                        question['question'] = rows[i].question
+                        let answerSql = `SELECT * FROM answers a where question_id = ${rows[i].id}`;
                         con.query(answerSql, question, function (err, result) {
                             if (!err){
                                 question['options'] = result;
