@@ -20,7 +20,7 @@ http.createServer(function (request, response) {
         data += chunk;
     })
     request.on('end', () => {
-        console.log(JSON.parse(data)); // 'Buy the milk'
+        console.log(data); // 'Buy the milk'
     })
 
 
