@@ -30,7 +30,7 @@ http.createServer(function (request, response) {
             console.log(data);
             const id = reqUrl.searchParams.get('id');
             const question = reqUrl.searchParams.get('question');
-            let sql = `INSERT INTO questions(id, question) values ('${id}', ${question})`;
+            let sql = `INSERT INTO questions(question) values (${question})`;
             try {
                 con.query(sql, function (err, result) {
                     if (err) 
