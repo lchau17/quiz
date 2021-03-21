@@ -1,8 +1,8 @@
-import { Question, numOfOptions } from './question.js';
 import { createContentDiv, createQuestionDiv, createButton } from './doc.js';
 import { updateLocalStorage } from './doc.js';
 
 let numOfQuestions;
+let numOfOptions = 4;
 
 function createQuizQuestion(data) {
     let questionDiv = createQuestionDiv(data['id']);
