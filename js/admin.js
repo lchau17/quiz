@@ -7,7 +7,7 @@ let numOfQuestions;
 function createQuizQuestion(data) {
     let questionDiv = createQuestionDiv(data['id']);
     let questionTextArea = document.createElement("textarea");
-    questionTextArea.id = `q${dat['ida']}-question`;
+    questionTextArea.id = `q${data['id']}-question`;
     questionTextArea.classList.add("question-textarea");
     questionTextArea.innerHTML = data[i]['question'];
     questionDiv.appendChild(questionTextArea);
