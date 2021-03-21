@@ -126,6 +126,7 @@ function onAddClick(){
 
 function onSaveClick(){
     let filledQuestions = getFilledQuestions();
+    console.log(filledQuestions.length);
     if (filledQuestions.length == 0) {
         return ;
     }
