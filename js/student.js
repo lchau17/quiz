@@ -7,7 +7,7 @@ const numOfOptions = 4;
 function onSubmitClick(questionsList){
     let rightAnwser = []
     for (let i = 0; i < questionsList; i++){
-        rightAnswer.push(questionsList[i]['options'].filter(o => o['is_answer'] === true))
+        rightAnswer.push(questionsList[i]['options'].filter(o => o['is_answer'] === 1))
 
     }
     console.log(rightAnwser);
