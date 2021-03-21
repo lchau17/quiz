@@ -12,7 +12,7 @@ function onSubmitClick(questionsList){
         rightAnswer.push(questionsList[i]['options'].filter(o => o['is_answer'] === true))
 
     }
-    console.log(rightAnwser)
+    console.log(rightAnwser);
 
     let correctAnswer = 0;
     let selectedOptions = document.querySelectorAll("input:checked");
@@ -44,7 +44,7 @@ function onSubmitClick(questionsList){
 }
 
 
-createStudentQuestion(question) {
+function createStudentQuestion(question) {
     let questionDiv = createQuestionDiv(question['id']);
     let questionText = document.createElement("p");
     questionText.innerText = question['question'];
