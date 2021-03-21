@@ -9,11 +9,11 @@ function onSubmitClick(questionsList){
 
     for (let i = 0; i < questionsList.length; i++) {
         let selected = document.querySelector(`input[name='q${i+1}']:checked`)
-        console.log(selected.value);
         for(let j = 0; j < numOfOptions; j++) {
             if (questionsList[i]['options'][j]['is_answer'] === true) {
                 let answer = questionsList[i]['options'][j]['answer'];
-                if (selected.value === answer) {
+                console.log(answer);
+                if (selected.value == answer) {
                     selected.colur = "green";
                     rightAnwser++;
                 } else {
