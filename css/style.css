@@ -39,3 +39,11 @@ input[type='radio'], label {
     vertical-align: middle;
 }
 
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}
