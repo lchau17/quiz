@@ -34,7 +34,6 @@ http.createServer(function (request, response) {
         let questionSql = "SELECT * FROM questions q";
         con.query(questionSql, function (err, rows, result) {
             if (!err){
-                console.log(result);
                 if (rows.length) {
                     for (let i = 0; i < rows.length; i++) {
                         let question = {}
@@ -49,6 +48,7 @@ http.createServer(function (request, response) {
                             }
                         })
                         questions.push(question);
+                        console.log(questions);
                     }
                     const resultStr = JSON.stringify(questions);
                     if (err) throw err;
