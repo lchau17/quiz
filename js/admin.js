@@ -10,7 +10,7 @@ function createQuizQuestion(data) {
     for (let i = 0; i < data.length; i ++) {
         let questionDiv = createQuestionDiv(data[i]['id']);
         let questionTextArea = document.createElement("textarea");
-        questionTextArea.id = `q${question[id]}-question`;
+        questionTextArea.id = `q${data[i]['id']}-question`;
         questionTextArea.classList.add("question-textarea");
         questionTextArea.innerHTML = data[i]['question'];
         questionDiv.appendChild(questionTextArea);
@@ -21,8 +21,8 @@ function createQuizQuestion(data) {
         for (let j = 0; i < numOfOptions; j++){
             let radiobox = document.createElement("input");
             radiobox.type = "radio";
-            radiobox.id = `q${questionNumber}-choice${i+1}`;
-            radiobox.name =  `q${questionNumber}`;
+            radiobox.id = `q${data[i]['id']}-choice${i+1}`;
+            radiobox.name =  `q${data[i]['id']}`;
     
             let label = document.createElement('label');
             label.htmlFor = radiobox.id;
