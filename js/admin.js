@@ -9,7 +9,7 @@ function createQuizQuestion(data) {
     let questionTextArea = document.createElement("textarea");
     questionTextArea.id = `q${data['id']}-question`;
     questionTextArea.classList.add("question-textarea");
-    questionTextArea.innerHTML = data[i]['question'];
+    questionTextArea.innerHTML = data['question'];
     questionDiv.appendChild(questionTextArea);
 
     let br = document.createElement("br");
