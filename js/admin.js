@@ -93,13 +93,26 @@ function getFilledQuestions(){
         console.log(questionsList)
     }
 
+    for (let i = numOfQuestions; i < questionsList.length; i++){
+        
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "https://aamayzingg.com/COMP4537/labs/quiz/questions", true);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.send(JSON.stringify(questionsList[i]));
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                console.log(this.responseText);
+            }
+        }
+    }
+
     return questionsList;
 }
 
 
 function onAddClick(){
     let data = {
-        'id': ++numOfQuestions,
+        'id': numOfQuestions + 1,
         'question': '',
         'options': ['', '', '', '']
     }
