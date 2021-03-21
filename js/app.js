@@ -20,7 +20,7 @@ http.createServer(function (request, response) {
         data += chunk;
     })
     request.on('end', () => {
-        console.log(data); // 'Buy the milk'
+        console.log(data);
         
         console.log(request.method);
         const reqUrl = new URL(request.url, 'https://aamayzingg.com/COMP4537/labs/quiz/questions');
@@ -44,8 +44,10 @@ http.createServer(function (request, response) {
                                 if (err) {
                                     throw err;
                                 } else {
-                                    response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
-                                    response.end();
+                                    if (i == options.length - 1){
+                                        response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
+                                        response.end();
+                                    }
                                 }
                             });
                         }
@@ -89,6 +91,39 @@ http.createServer(function (request, response) {
                     }
                 }
             });
+        } else if (request.method == "PUT") {
+            console.log("PUT");
+            data = JSON.parse(data);
+            console.log(data);
+            const id = data['id'];
+            const question = data['question'];
+            let sql = `UPDATE questions set question = '${question}' where id = ${id}`;
+            try {
+                con.query(sql, function (err, result) {
+                    if (err) 
+                    {
+                        throw err;
+                    } else {
+                        const options = data['options'];
+                        for (let i = 0; i < options.length; i++) {
+                            let sql = `UPDATE answers SET answer = '${options[i]['answer']}', is_answer = ${options[i]['is_answer']} where question_id = ${id} and option_id = ${options[i]['option_id']}`;
+                            con.query(sql, function (err, result) {
+                                if (err) {
+                                    throw err;
+                                } else {
+                                    if (i == options.length - 1){
+                                        response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
+                                        response.end();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                })
+            } catch (err) {
+                console.log(err);
+            }        
+            
         }
     })
 }).listen(8070);

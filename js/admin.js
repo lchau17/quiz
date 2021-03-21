@@ -92,20 +92,6 @@ function getFilledQuestions(){
         questionsList.push(question);
         console.log(questionsList)
     }
-
-    for (let i = numOfQuestions; i < questionsList.length; i++){
-        
-        const xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "https://aamayzingg.com/COMP4537/labs/quiz/questions/", true);
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xhttp.send(JSON.stringify(questionsList[i]));
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4) {
-                console.log(this.responseText);
-            }
-        }
-    }
-
     return questionsList;
 }
 
@@ -135,7 +121,32 @@ function onDeleteClick(){
 
 function onSaveClick(){
     let filledQuestions = getFilledQuestions();
-    updateLocalStorage('questions', JSON.stringify(filledQuestions));
+    for (let i = 0; i < numOfQuestions; i++){
+        
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("PUT", "https://aamayzingg.com/COMP4537/labs/quiz/questions/", true);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.send(JSON.stringify(filledQuestions[i]));
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                console.log(this.responseText);
+            }
+        }
+    }
+
+    for (let i = numOfQuestions; i < filledQuestions.length; i++){
+        
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "https://aamayzingg.com/COMP4537/labs/quiz/questions/", true);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.send(JSON.stringify(filledQuestions[i]));
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                console.log(this.responseText);
+            }
+        }
+    }
+    numOfQuestions = filledQuestions.length;
 }
 
 
