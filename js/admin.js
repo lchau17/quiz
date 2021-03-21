@@ -100,7 +100,12 @@ function onAddClick(){
     let data = {
         'id': numOfQuestions + 1,
         'question': '',
-        'options': ['', '', '', '']
+        'options': [
+            {'answer': ""},
+            {'answer': ""},
+            {'answer': ""},
+            {'answer': ""},
+        ]
     }
     createQuizQuestion(data);
 }
