@@ -5,26 +5,24 @@ const numOfOptions = 4;
 
 
 function onSubmitClick(questionsList){
-    let rightAnwser = []
-    for (let i = 0; i < questionsList; i++){
-        rightAnswer.push(questionsList[i]['options'].filter(o => o['is_answer'] === 1))
+    let rightAnwser = 0;
 
-    }
-    console.log(rightAnwser);
+    for (let i = 0; i < questionsList; i++) {
+        let selected = document.querySelector(`input[type='radio'][name='q${i+1}']:checked`)
+        for(let j = 0; j < numOfOptions; j++) {
+            if (questionsList[i]['options'][j]['is_answer'] === true) {
+                let answer = questionsList[i]['options'][j]['answer'];
+                if (selected.value === answer) {
+                    selected.colur = "green";
+                    rightAnwser++;
+                } else {
+                    selected.colur = "red";
 
-    let correctAnswer = 0;
-    let selectedOptions = document.querySelectorAll("input:checked");
-    let answers = Array.from(document.querySelectorAll(".correct"));
-    answers.forEach(answer => answer.style.color = "green");
-
-    for (let i = 0; i < selectedOptions.length; i++){
-        let label = document.querySelector(`label[for=${selectedOptions[i].id}]`);
-        if (label.classList.contains("correct")){
-            correctAnswer++;
-        } else {
-            label.style.color = "red";
+                }
+            }
         }
     }
+    console.log(rightAnwser);
 
     let submitbtn = document.getElementById("SubmitBtn");
     submitbtn.style.display = "none";
@@ -36,7 +34,7 @@ function onSubmitClick(questionsList){
     
     let result = document.createElement("h3");
     result.id = "result";
-    result.innerHTML = `Result: ${correctAnswer}/${questionsList.length}`
+    result.innerHTML = `Result: ${rightAnwser}/${questionsList.length}`
     let contentDiv = document.getElementById("content");
     contentDiv.appendChild(result);
 }
