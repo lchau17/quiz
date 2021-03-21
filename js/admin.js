@@ -137,7 +137,7 @@ function onSaveClick(){
 
 
 createContentDiv();
-createQuizQuestion(1);
+createQuizQuestion(data);
 createMenu();
 
 
