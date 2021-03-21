@@ -56,7 +56,7 @@ function createMenu(){
     });
     menuDiv.appendChild(addBtn);
     menuDiv.appendChild(saveBtn);
-    menuDiv.appendChild(deleteBtn);
+    // menuDiv.appendChild(deleteBtn);
     menuDiv.appendChild(backBtn);
 }
 
@@ -110,19 +110,19 @@ function onAddClick(){
     createQuizQuestion(data);
 }
 
-function onDeleteClick(){
+// function onDeleteClick(){
 
-    try {
-        let contentDiv = document.getElementById("content");
-        contentDiv.removeChild(contentDiv.lastChild);
-    } catch(err) {
-        return;
-    }
+//     try {
+//         let contentDiv = document.getElementById("content");
+//         contentDiv.removeChild(contentDiv.lastChild);
+//     } catch(err) {
+//         return;
+//     }
 
-    let filledQuestions = getFilledQuestions();
-    updateLocalStorage('questions', JSON.stringify(filledQuestions));
+//     let filledQuestions = getFilledQuestions();
+//     updateLocalStorage('questions', JSON.stringify(filledQuestions));
 
-}
+// }
 
 function onSaveClick(){
     let filledQuestions = getFilledQuestions();
