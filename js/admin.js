@@ -96,7 +96,7 @@ function getFilledQuestions(){
     for (let i = numOfQuestions; i < questionsList.length; i++){
         
         const xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "https://aamayzingg.com/COMP4537/labs/quiz/questions", true);
+        xhttp.open("POST", "https://aamayzingg.com/COMP4537/labs/quiz/questions/", true);
         xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhttp.send(JSON.stringify(questionsList[i]));
         xhttp.onreadystatechange = function() {
@@ -140,7 +140,7 @@ function onSaveClick(){
 
 
 const xhttp = new XMLHttpRequest();
-xhttp.open("GET", "https://aamayzingg.com/COMP4537/labs/quiz/questions", true);
+xhttp.open("GET", "https://aamayzingg.com/COMP4537/labs/quiz/questions/", true);
 xhttp.send();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4) {
