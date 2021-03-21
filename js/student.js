@@ -85,7 +85,7 @@ xhttp.onreadystatechange = function() {
             document.body.innerHTML = "No quiz question found"
             return;
         }
-        contentDiv = createContentDiv();
+        let contentDiv = createContentDiv();
 
 
         for (let i = 0; i < data.length; i ++) {
