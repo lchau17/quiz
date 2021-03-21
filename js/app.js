@@ -15,21 +15,35 @@ const URL = require('url').URL;
 let http = require('http');
 http.createServer(function (request, response) {
     const reqUrl = new URL(request.url, 'https://aamayzingg.com/COMP4537/labs/quiz/questions');
-    // if (request.method == "POST"){
-    //     const name = reqUrl.searchParams.get('name');
-    //     const score = reqUrl.searchParams.get('score');
-    //     let sql = `INSERT INTO scores(name, score) values ('${name}', ${score})`;
-    //     try {
-    //         con.query(sql, function (err, result) {
-    //             if (err) throw err;
-    //             response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
-    //             response.end();
-    //         });
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // } else 
-    if (request.method == "GET") {
+    if (request.method == "POST"){
+        const id = reqUrl.searchParams.get('id');
+        const question = reqUrl.searchParams.get('question');
+        let sql = `INSERT INTO scores(id, question) values ('${id}', ${question})`;
+        try {
+            con.query(sql, function (err, result) {
+                if (err) 
+                {
+                    throw err;
+                } else {
+                    const options = reqUrl.searchParams.get('options');
+                    for (let i = 0; i < options.length; i++) {
+                        let sql = `INSERT INTO answers(question_id, option_id, answer, is_answer) values ('${id}', ${options[i]['option_id']}, ${options[i]['answer']}, ${options[i]['is_answer']})`;
+                        con.query(sql, function (err, result) {
+                            if (err) {
+                                throw err;
+                            } else {
+                                response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
+                                response.end();
+                            }
+                        });
+                    }
+                }
+            })
+        } catch (err) {
+            console.log(err);
+        }        
+        
+    } else if (request.method == "GET") {
         let questions = []
         let questionSql = "SELECT * FROM questions q";
         con.query(questionSql, function (err, rows) {
