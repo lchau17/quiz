@@ -23,20 +23,20 @@ http.createServer(function (request, response) {
         console.log(data); // 'Buy the milk'
     })
 
-    console.log(request.method);
     const reqUrl = new URL(request.url, 'https://aamayzingg.com/COMP4537/labs/quiz/questions');
     if (request.method == "POST") {
         console.log("POST");
-        const id = reqUrl.searchParams.get('id');
-        const question = reqUrl.searchParams.get('question');
+        data = JSON.parse(data);
+        const id = data['id'];
+        const question = data['question'];
         let sql = `INSERT INTO questions(id, question) values ('${id}', ${question})`;
         try {
-            con.query(sql, function (err, result) {
+            con.query(sql, data, function (err, result) {
                 if (err) 
                 {
                     throw err;
                 } else {
-                    const options = reqUrl.searchParams.get('options');
+                    const options = data['options'];
                     for (let i = 0; i < options.length; i++) {
                         let sql = `INSERT INTO answers(question_id, option_id, answer, is_answer) values ('${id}', ${options[i]['option_id']}, ${options[i]['answer']}, ${options[i]['is_answer']})`;
                         con.query(sql, function (err, result) {
