@@ -3,14 +3,6 @@ import { createContentDiv, createQuestionDiv, createButton } from './doc.js';
 import { updateLocalStorage } from './doc.js';
 
 
-const xhttp = new XMLHttpRequest();
-xhttp.open("GET", "https://aamayzingg.com/COMP4537/labs/quiz/questions", true);
-xhttp.send();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4) {
-        console.log(this.responseText);
-        const data = JSON.parse(this.responseText);
-    }};
 
  
 
@@ -136,8 +128,14 @@ function onSaveClick(){
 }
 
 
-createContentDiv();
-createQuizQuestion(data);
-createMenu();
-
-
+const xhttp = new XMLHttpRequest();
+xhttp.open("GET", "https://aamayzingg.com/COMP4537/labs/quiz/questions", true);
+xhttp.send();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4) {
+        console.log(this.responseText);
+        const data = JSON.parse(this.responseText);
+        createContentDiv();
+        createQuizQuestion(data);
+        createMenu();
+    }};
