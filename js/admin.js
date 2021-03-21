@@ -130,6 +130,7 @@ xhttp.onreadystatechange = function() {
         numOfQuestions = data.length;
         for (let i = 0; i < data.length; i ++) {
             createQuizQuestion(data[i]);
+        }   
 
 
         createContentDiv();
