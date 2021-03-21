@@ -92,7 +92,7 @@ function getFilledQuestions(){
 
 
 function onAddClick(){
-    data = {
+    let data = {
         'id': ++numOfQuestions,
         'question': '',
         'options': ['', '', '', '']
