@@ -33,11 +33,13 @@ http.createServer(function (request, response) {
         let questions = []
         let questionSql = "SELECT * FROM questions q";
         con.query(questionSql, function (err, result) {
+            console.log(result);
+
             for (let i = 0; i < result.length; i++) {
                 let question = {}
                 question[id] = result[i][id]
                 question[question] = result[question]
-                let answerSql = `SELECT * FROM answers a join questions q on a.question_id = q.id where q.id = ${result[id]}`;
+                let answerSql = `SELECT * FROM answers a join questions q on a.question_id = q.id where q.id = ${result[i][id]}`;
                 con.query(answerSql, question, function (err, result) {
                     question[options] = result;
                     if (err) throw err;
@@ -45,7 +47,6 @@ http.createServer(function (request, response) {
                 questions.push(question);
             }
             const resultStr = JSON.stringify(result);
-            console.log(result);
             if (err) throw err;
             response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
             response.write(resultStr);
