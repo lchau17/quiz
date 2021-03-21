@@ -38,12 +38,12 @@ http.createServer(function (request, response) {
                 if (rows.length) {
                     for (let i = 0; i < result.length; i++) {
                         let question = {}
-                        question[id] = result[i].id
-                        question[question] = result[i].question
+                        question['id'] = result[i].id
+                        question['question'] = result[i].question
                         let answerSql = `SELECT * FROM answers a join questions q on a.question_id = q.id where q.id = ${result[i].id}`;
                         con.query(answerSql, question, function (err, result) {
                             if (!err){
-                                question[options] = result;
+                                question['options'] = result;
                             } else {
                                 throw err;
                             }
