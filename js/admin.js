@@ -126,6 +126,9 @@ function onAddClick(){
 
 function onSaveClick(){
     let filledQuestions = getFilledQuestions();
+    if (filledQuestions.length == 0) {
+        return ;
+    }
     for (let i = 0; i < numOfQuestions; i++){
         
         const xhttp = new XMLHttpRequest();
