@@ -73,7 +73,7 @@ http.createServer(function (request, response) {
                                         question['options'] = result;
                                         questions.push(question);
                                         console.log(questions);
-                                        if (questions.length = rows.length) {
+                                        if (questions.length == rows.length) {
                                             const resultStr = JSON.stringify(questions);
                                             if (err) throw err;
                                             response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
