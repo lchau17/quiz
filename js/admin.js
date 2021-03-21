@@ -70,7 +70,7 @@ function getFilledQuestions(){
         let questionText = document.getElementById(`q${i}-question`).value;
         question['question'] = questionText
         if (questionText === ""){
-            alert(`Empty quiz questions: Question ${filledQuestionNumber}`);
+            alert(`Empty quiz questions: Question ${i}`);
             return [];
         }
 
