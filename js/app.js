@@ -23,7 +23,7 @@ http.createServer(function (request, response) {
         console.log(data); // 'Buy the milk'
     })
 
-
+    console.log(request.method);
     const reqUrl = new URL(request.url, 'https://aamayzingg.com/COMP4537/labs/quiz/questions');
     if (request.method == "POST") {
         console.log("POST");
