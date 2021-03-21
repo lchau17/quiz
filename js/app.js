@@ -42,13 +42,15 @@ http.createServer(function (request, response) {
                         let answerSql = `SELECT * FROM answers a where question_id = ${rows[i].id}`;
                         con.query(answerSql, question, function (err, result) {
                             if (!err){
-                                question['options'] = result;
+                                if (result.length) {
+                                    question['options'] = result;
+                                    questions.push(question);
+                                    console.log(questions);
+                                }
                             } else {
                                 throw err;
                             }
                         })
-                        questions.push(question);
-                        console.log(questions);
                     }
                     const resultStr = JSON.stringify(questions);
                     if (err) throw err;
