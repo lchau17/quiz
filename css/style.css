@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+
+button {
+    background-color: rgb(173, 173, 173);
+    border: none;
+    border-radius: 4px;
+    color: black;
+    padding: 15px 32px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.question-textarea {
+    width: 350px;
+    height: 100px;
+    margin: 3px;
+
+}
+
+.choice-textarea {
+    width: 300px;
+    height: 35px;
+    margin: 3px;
+
+}
+
+.question-div {
+    margin-bottom: 10px;
+}
+
+input[type='radio'], label {
+    margin: 5px;
+    vertical-align: middle;
+}
+

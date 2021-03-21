@@ -4,20 +4,21 @@ import { createContentDiv, createButton, createQuestionDiv } from './doc.js';
 const numOfOptions = 4;
 
 
-function onSubmitClick(questionsList){
+function onSubmitClick(questionsList) {
     let rightAnwser = 0;
 
     for (let i = 0; i < questionsList.length; i++) {
         let selected = document.querySelector(`input[name='q${i+1}']:checked`);
         for (let j = 0; j < numOfOptions; j++) {
-            console.log(questionsList[i]['options'][j]['is_answer']);
             if (questionsList[i]['options'][j]['is_answer'] == 1) {
                 let answer = questionsList[i]['options'][j]['answer'];
-                console.log(answer);
+                let label = document.querySelector(`label[for='${selected.id}']`);
                 if (selected.value == answer) {
-                    selected.colur = "green";
+                    label.classList.add("correct");
                     rightAnwser++;
                 } else {
+                    label.classList.add("incorrent");
+
                     selected.colur = "red";
 
                 }
