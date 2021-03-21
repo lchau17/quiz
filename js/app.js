@@ -25,7 +25,6 @@ http.createServer(function (request, response) {
         console.log(request.method);
         const reqUrl = new URL(request.url, 'https://aamayzingg.com/COMP4537/labs/quiz/questions');
         if (request.method == "POST") {
-            console.log("POST");
             data = JSON.parse(data);
             console.log(data);
             const id = data['id'];
@@ -44,7 +43,7 @@ http.createServer(function (request, response) {
                                 if (err) {
                                     throw err;
                                 } else {
-                                    if (i == options.length - 1){
+                                    if (i == 3){
                                         response.writeHead(200, {'Content-type': 'text/plain', "Access-Control-Allow-Origin": "*"});
                                         response.end();
                                     }
