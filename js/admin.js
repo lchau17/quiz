@@ -23,6 +23,7 @@ function createQuizQuestion(data) {
             radiobox.type = "radio";
             radiobox.id = `q${data[i]['id']}-choice${i+1}`;
             radiobox.name =  `q${data[i]['id']}`;
+            radiobox.checked = Boolean(data[i]['options'][j]['is_answer']);
     
             let label = document.createElement('label');
             label.htmlFor = radiobox.id;
