@@ -1,4 +1,4 @@
-import { createContentDiv, createButton } from './doc.js';
+import { createContentDiv, createButton, createQuestionDiv } from './doc.js';
 
 
 const numOfOptions = 4;
