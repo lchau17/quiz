@@ -8,7 +8,8 @@ function onSubmitClick(questionsList){
     let rightAnwser = 0;
 
     for (let i = 0; i < questionsList.length; i++) {
-        let selected = document.querySelector(`input[type='radio'][name='q${i+1}']:checked`)
+        let selected = document.querySelector(`input[name='q${i+1}']:checked`)
+        console.log(selected.value);
         for(let j = 0; j < numOfOptions; j++) {
             if (questionsList[i]['options'][j]['is_answer'] === true) {
                 let answer = questionsList[i]['options'][j]['answer'];
