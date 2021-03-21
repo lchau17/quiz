@@ -17,10 +17,7 @@ function onSubmitClick(questionsList) {
                     label.classList.add("correct");
                     rightAnwser++;
                 } else {
-                    label.classList.add("incorrent");
-
-                    selected.colur = "red";
-
+                    label.classList.add("incorrect");
                 }
             }
         }
