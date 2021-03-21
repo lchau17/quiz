@@ -29,7 +29,7 @@ http.createServer(function (request, response) {
             console.log(data);
             const id = data['id'];
             const question = data['question'];
-            let sql = `INSERT INTO questions(question) values ('${question}')`;
+            let sql = `INSERT INTO questions(id, question) values (${id}, '${question}')`;
             try {
                 con.query(sql, function (err, result) {
                     if (err) 
