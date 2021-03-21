@@ -47,6 +47,7 @@ function createStudentQuestion(question) {
     let questionText = document.createElement("p");
     questionText.innerText = question['question'];
     questionDiv.appendChild(questionText);
+    let options = question['options']
     for (let i = 0; i < numOfOptions; i++){
         let radiobox = document.createElement('input');
         radiobox.type = "radio";
@@ -55,7 +56,7 @@ function createStudentQuestion(question) {
 
         let label = document.createElement('label');
         label.htmlFor = radiobox.id;
-        label.innerHTML = this.options[i];
+        label.innerHTML = options[i]['answer'];
         // if (this.options[i] === this.answer){
         //     label.classList.add("correct");
         // } else{
