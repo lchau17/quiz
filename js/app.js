@@ -29,7 +29,7 @@ http.createServer(function (request, response) {
         console.log("POST");
         const id = reqUrl.searchParams.get('id');
         const question = reqUrl.searchParams.get('question');
-        let sql = `INSERT INTO scores(id, question) values ('${id}', ${question})`;
+        let sql = `INSERT INTO questions(id, question) values ('${id}', ${question})`;
         try {
             con.query(sql, function (err, result) {
                 if (err) 
